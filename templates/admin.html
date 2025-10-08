@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✈️ Azalea Air - Flight Crew Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="airline-header">
+            <div class="airplane-icon">🧑‍✈️</div>
+            <h1>Azalea Air Crew Dashboard</h1>
+            <div class="flight-number">Flight AA-2025 - Passenger Manifest</div>
+        </div>
+        <p>📋 Review passenger bookings and meal service requirements for the upcoming flight:</p>
+        
+        <div class="admin-actions">
+            <div class="admin-buttons">
+                <button id="refreshBtn">🔄 Refresh Passenger List</button>
+                <button id="downloadBtn">📋 Download Manifest</button>
+            </div>
+            <a href="/" class="back-link">← Return to Booking System</a>
+        </div>
+        
+        <div id="summarySection" class="summary-section" style="display: none;">
+            <h3>📊 Flight Summary</h3>
+            <div id="summaryContent"></div>
+        </div>
+        
+        <div id="loading" class="loading" style="display: none;">📡 Loading passenger manifest...</div>
+        
+        <div id="rsvpList">
+            <!-- RSVP data will be loaded here -->
+        </div>
+        
+        <div id="noData" style="display: none;">
+            <p>✈️ No passengers currently booked on this flight.</p>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='admin.js') }}"></script>
+</body>
+</html>

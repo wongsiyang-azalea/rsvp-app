@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✈️ Azalea Air - Flight Reservation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="airline-header">
+            <div class="airplane-icon">✈️</div>
+            <h1>Azalea Air Flight Reservation</h1>
+            <div class="flight-number">Flight AA-2025</div>
+        </div>
+        <p class="welcome-message">Complete your passenger information and meal preferences.</p>
+        
+        <div class="boarding-pass">
+            <h2>🎫 Passenger Information</h2>
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="email">🛂 Passenger Email (Contact Information):</label>
+                    <input type="email" id="email" name="email" required placeholder="passenger@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dietary_option">🍽️ In-Flight Meal Preference:</label>
+                    <select id="dietary_option" name="dietary_option" required>
+                        <option value="">Choose your bento box...</option>
+                        <option value="shrimp-aglio-olio">🍤 Shrimp Linguine Aglio Olio</option>
+                        <option value="creamy-chicken-pomodoro">🐔 Creamy Chicken Pomodoro</option>
+                        <option value="carbonara-funghi">🍄 Carbonara al Funghi (V)</option>
+                    </select>
+                </div>
+                <!-- Legacy special dietary group removed; retained in backend for historical data -->
+                
+                <div class="form-group">
+                    <label>🗓️ Departure Date:</label>
+                    <div id="departureInfo" class="departure-info">
+                        <div class="loading-departure">Loading flight information...</div>
+                    </div>
+                </div>
+                
+                <button type="submit" id="submitBtn">
+                    <span class="btn-text">🎫 Complete Booking</span>
+                </button>
+            </form>
+        </div>
+        
+        <div id="message" class="message" style="display: none;"></div>
+        
+        <!-- <div class="admin-link">
+            <a href="/admin">🧑‍✈️ Flight Crew Access - View Passenger Manifest</a>
+        </div> -->
+    </div>
+    
+    <!-- Boarding Pass Modal -->
+    <div id="boardingPassModal" class="boarding-pass-modal">
+        <div class="boarding-pass-container">
+            <div class="success-indicator">
+                <div class="checkmark">✓</div>
+                <div class="success-text">Booking Confirmed!</div>
+            </div>
+            
+            <div class="horizontal-boarding-pass">
+                <div class="boarding-pass-left">
+                    <div class="airline-section">
+                        <div class="airline-name">✈️ AZALEA AIR</div>
+                        <div class="boarding-pass-type">BOARDING PASS</div>
+                    </div>
+                    
+                    <div class="passenger-section">
+                        <div class="passenger-label">PASSENGER</div>
+                        <div class="passenger-name" id="passengerEmail">loading@example.com</div>
+                    </div>
+                    
+                    <div class="flight-details-row">
+                        <div class="detail-group">
+                            <div class="detail-label">FROM</div>
+                            <div class="detail-value">WORK DESK</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">TO</div>
+                            <div class="detail-value" id="destination">Loading</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">FLIGHT</div>
+                            <div class="detail-value" id="flightNumber">AA-2025</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">DATE</div>
+                            <div class="detail-value" id="departureDate">Loading</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-details-row">
+                        <div class="detail-group">
+                            <div class="detail-label">DEPARTURE</div>
+                            <div class="detail-value" id="departureTime">Loading</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">GATE</div>
+                            <div class="detail-value" id="gate">Loading</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">SEAT</div>
+                            <div class="detail-value" id="seatNumber">STANDING</div>
+                        </div>
+                        <div class="detail-group">
+                            <div class="detail-label">EST. ARRIVAL</div>
+                            <div class="detail-value" id="boardingTime">Loading</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="boarding-pass-divider"></div>
+                
+                <div class="boarding-pass-right">
+                    <div class="confirmation-section">
+                        <div class="confirmation-label">CONFIRMATION</div>
+                        <div class="confirmation-code" id="confirmationCode">LOADING</div>
+                    </div>
+                    
+                    <div class="meal-section">
+                        <div class="meal-label">MEAL</div>
+                        <div class="meal-value" id="mealPreference">Loading</div>
+                    </div>
+                    
+                    <div class="boarding-pass-barcode">
+                        <div id="barcode">||||| |||| ||||| |||| |||||</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="boarding-pass-actions">
+                <button class="btn-close-boarding-pass" id="closeBoardingPass">✅ Continue</button>
+                <button class="btn-print-boarding-pass" id="printBoardingPass">🖨️ Print</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

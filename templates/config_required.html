@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✈️ Azalea Air - Configuration Required</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="airline-header">
+            <div class="airplane-icon">⚠️</div>
+            <h1>Azalea Air Configuration Required</h1>
+            <div class="flight-number">System Configuration Needed</div>
+        </div>
+        
+        <div class="config-message">
+            <h2>🛠️ Flight Configuration Required</h2>
+            <p>The flight departure date has not been configured yet. Please contact the system administrator to set the departure date before passengers can make bookings.</p>
+            
+            <div class="config-info">
+                <h3>For Administrators:</h3>
+                <p>Use the CLI configuration tool to set the departure date:</p>
+                <div class="code-block">
+                    <code>python configure.py --set-date YYYY-MM-DD</code>
+                </div>
+                <p>Example:</p>
+                <div class="code-block">
+                    <code>python configure.py --set-date 2025-12-15</code>
+                </div>
+                <p>You can also set additional flight information:</p>
+                <div class="code-block">
+                    <code>python configure.py --set-date 2025-12-15 --flight-number "AA-3045" --destination "New York"</code>
+                </div>
+            </div>
+        </div>
+        
+        <div class="admin-link">
+            <a href="/admin">🧑‍✈️ Flight Crew Access - Administrative Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>
